@@ -1,0 +1,59 @@
+
+
+
+
+ <mat-sidenav-container class="h-screen">
+
+
+   
+<mat-sidenav class="!w-auto h-screen fixed lg:w-64" #sidenav mode="over" [opened]="isOpen">
+
+     <div class="p-6">
+       <h2 class="text-lg text-gray-900">Category</h2>
+      
+      <mat-nav-list>
+        @for (cat of categories(); track cat) {
+        <mat-list-item
+          [activated]="cat === category()"
+          class="my-2"
+          [routerLink]="['/Productgrid', cat]"
+          (click)="selectCategory(cat)"
+        >
+          <span matListItemTitle>{{ cat | titlecase }}</span>
+          </mat-list-item
+        >
+        }
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="bg-grey-600 p-6 h-full">
+    <h1 class="text-xl font-bold text-gray-900 mb-1">
+
+ <button mat-icon-button class=" bg-white  shadow-xl  mr-2 lg:hidden"
+        (click)="toggleSidenav()">
+  <mat-icon>{{ sidenav.opened ? 'close' : 'menu' }}</mat-icon>
+</button>
+
+{{ category() | titlecase }}
+
+    </h1>
+    <!-- mat-sidenav-content ke andar, top pe add karo -->
+
+
+
+    <h1 class="text-base mb-4 text-gray-600">
+      {{ store.filteredProducts().length }} Products Found
+    </h1>
+
+    <div class="responsive-grid">
+      @for (product of store.filteredProducts(); track product.id) {
+      <app-product [product]="product" >
+        <app-toggle-wishlist-button [product]="product" class="!absolute z-10 top-3 right-10 !w-4 !px-0" />
+      </app-product>
+     
+      }
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div class="bg-grey-600 p-6 h-full"></div>

@@ -1,0 +1,8 @@
+<button
+  class="w-10 h-10 rounded-full bg-white border-0 justify-center flex items-center cursor-pointer transition-all duration-200 hover:shadow-lg"
+  [class]="isInWishlist() ? '!text-red-600' : '!text-gray-400'"
+  matButton
+  (click)="toggleWishlist(product())"
+>
+  <mat-icon>{{ isInWishlist() ? 'favorite' : 'favorite_border' }}</mat-icon>
+</button>

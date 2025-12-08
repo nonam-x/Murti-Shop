@@ -1,0 +1,11 @@
+<div class="flex items-center gap-3">
+    <div class="inline-flex items-center">
+       <button matButton [disabled]="quantity()=== 1 " (click)="qtyUpdated.emit(quantity() - 1)">
+          <mat-icon>remove</mat-icon>
+       </button>
+       <div>{{quantity()}}</div>
+       <button matButton  (click)="qtyUpdated.emit(quantity() + 1)">
+          <mat-icon>add</mat-icon>
+       </button>
+    </div>
+</div>

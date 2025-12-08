@@ -1,0 +1,25 @@
+<div class="relative grid grid-cols-1  bg-white rounded-xl shadow-lg overflow-hidden flex-col lg:h-full">
+  <img [src]="product().imageUrl" alt="" class="h-[200px] w-full  lg:w-full lg:h-[300px] object-cover rounded-t-xl " />
+  <!-- <app-toggle-wishlist-button class="!absolute z-10 top-3 right-3" [product]="product()"></app-toggle-wishlist-button> -->
+   <ng-content/>
+  <div class="flex p-5 flex-col flex-1">
+    <h3 class="text-lg font-semibold to-gray-900 mb-1 leading-tight">{{ product().name }}</h3>
+    <h3 class="to-gray-900 mb-2 flex-1 leading-relaxed">{{ product().description }}</h3>
+
+    <h3 class="to-gray-900 mb-2 leading-tight">
+      {{ product().inStock ? 'In Stock' : 'Out Of Stock' }}
+    </h3>
+    <div class="flex items-center justify-between mt-auto">
+      <span class="font-bold to-gray-900 text-xl">${{ product().price }}</span>
+      <button
+        matButton="filled"
+        class="items-center flex ml-1 !h-8 "
+        (click)="store.addToCart(product())"
+      >
+        Add <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div></div>
+</div>

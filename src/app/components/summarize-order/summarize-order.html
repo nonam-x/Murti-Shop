@@ -1,0 +1,25 @@
+<div class="border border-gray-200 rounded-xl p-4 bg-white">
+  <h2 class="text-2xl mb-4 font-bold">Order Summary</h2>
+
+  <div class=" space-y-2 border-b pb-4">
+  <ng-content select="[checkoutItems]"></ng-content>
+  </div>
+
+  <div class="space-y-3 text-lg pt-4">
+    <div class="flex justify-between">
+      <span>SubTotal</span>
+      <Span>{{ subtotal() }}</Span>
+    </div>
+    <div class="flex justify-between border-t">
+      <span>Tax</span>
+      <Span>{{ tax() }}</Span>
+    </div>
+    <div class="flex justify-between border-t pt-1">
+      <span>Total</span>
+      <Span>{{ total() }}</Span>
+    </div>
+  </div>
+
+  <ng-content select="[actionButtons]"></ng-content>
+  
+</div>
