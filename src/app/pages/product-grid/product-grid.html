@@ -6,10 +6,10 @@
 
 
    
-<mat-sidenav class="!w-auto h-screen fixed lg:w-64" #sidenav mode="over" [opened]="isOpen">
+<mat-sidenav class="!w-auto  h-screen fixed lg:w-64" #sidenav mode="over" [opened]="isOpen">
 
      <div class="p-6">
-       <h2 class="text-lg text-gray-900">Category</h2>
+       <h2 class="text-lg text-gray-900 ">Category</h2>
       
       <mat-nav-list>
         @for (cat of categories(); track cat) {
@@ -26,15 +26,15 @@
       </mat-nav-list>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content class="bg-grey-600 p-6 h-full">
-    <h1 class="text-xl font-bold text-gray-900 mb-1">
+  <mat-sidenav-content class="bg-grey-600 p-6 h-full ">
+    <h1 class="text-xl font-bold text-gray-900 mb-1 flex items-center justify-start">
 
- <button mat-icon-button class=" bg-white  shadow-xl  mr-2 lg:hidden"
+ <button mat-icon-button class=" bg-orange-50   mr-2 lg:hidden"
         (click)="toggleSidenav()">
   <mat-icon>{{ sidenav.opened ? 'close' : 'menu' }}</mat-icon>
 </button>
-
 {{ category() | titlecase }}
+
 
     </h1>
     <!-- mat-sidenav-content ke andar, top pe add karo -->
