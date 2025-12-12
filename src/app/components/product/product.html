@@ -1,8 +1,8 @@
-<div class="relative grid grid-cols-1  bg-white rounded-xl shadow-lg overflow-hidden flex-col h-78 lg:h-full">
+<div class="relative grid grid-cols-1  bg-white rounded-xl shadow-lg overflow-hidden flex-col h-fit lg:h-full">
   <img [src]="product().imageUrl" alt="" class="h-[160px] w-full  lg:w-full lg:h-[300px] object-cover rounded-t-xl " />
   <!-- <app-toggle-wishlist-button class="!absolute z-10 top-3 right-3" [product]="product()"></app-toggle-wishlist-button> -->
    <ng-content/>
-  <div class="flex p-3 lg:p-4 flex-col flex-1 h-38">
+  <div class="flex p-3 lg:p-4 flex-col flex-1 h-fit">
     <h3 class="  lg:text-lg font-semibold to-gray-900 mb-1 leading-tight">{{ product().name }}</h3>
     <h3 class=" to-gray-900 mb-1 lg:mb-2 flex-1 leading-4 lg:leading-relaxed">{{ product().description }}</h3>
 
