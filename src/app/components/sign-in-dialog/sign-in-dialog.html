@@ -17,19 +17,20 @@
       <input
         matInput
         formControlName="password"
-        [type]="passwordVisible() ? 'text' : 'password'"
+        [type]="passwordVisible ? 'text' : 'password'"
         placeholder="enter your password"
       />
       <mat-icon matPrefix>lock</mat-icon>
 
       <button
+        matIcon
         matSuffix
         matIconButton
         type="button"
-        class="mr-2"
-        (click)="passwordVisible.set(!passwordVisible)"
+        class="mr-2 "
+        (click)="togglePass()"
       >
-        <mat-icon [fontIcon]="passwordVisible() ? 'visibility_off' : 'visibility'"></mat-icon>
+        <mat-icon [fontIcon]="passwordVisible ? 'visibility_off' : 'visibility'"></mat-icon>
       </button>
     </mat-form-field>
     <button type="submit" matButton="filled" class="w-full">Sign In</button>

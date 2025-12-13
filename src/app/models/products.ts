@@ -7,4 +7,5 @@ export type product = {
     rating:number;
     inStock:boolean;
     category:string;
+    vendor:string;
 }

@@ -25,20 +25,12 @@ import { Router } from '@angular/router';
 import { Order } from './models/order';
 import { promises } from 'dns';
 import { resolve } from 'path';
-import { withStorageSync } from '@angular-architects/ngrx-toolkit'
-
-
-
-
-
-
-
-
-
+import { withStorageSync } from '@angular-architects/ngrx-toolkit';
 
 export type EcommerceState = {
   products: product[];
   category: string;
+  vendor: string;
   wishlistItems: product[];
   cartItems: CartItemsModal[];
   loading: boolean;
@@ -51,7 +43,7 @@ export const EcommerceStore = signalStore(
     providedIn: 'root',
   },
 
-  // initial stats or values 
+  // initial stats or values
   withState({
     // initial Satats or values of the singnals(variables)
 
@@ -66,6 +58,7 @@ export const EcommerceStore = signalStore(
         rating: 4.5,
         inStock: true,
         category: 't-shirts',
+        vendor: 'kartik',
       },
       {
         id: '2',
@@ -76,6 +69,7 @@ export const EcommerceStore = signalStore(
         rating: 4.7,
         inStock: true,
         category: 't-shirts',
+        vendor: 'ravi singh',
       },
       {
         id: '3',
@@ -86,6 +80,7 @@ export const EcommerceStore = signalStore(
         rating: 4.3,
         inStock: true,
         category: 't-shirts',
+        vendor: 'ravi singh',
       },
 
       {
@@ -97,6 +92,7 @@ export const EcommerceStore = signalStore(
         rating: 4.2,
         inStock: false,
         category: 't-shirts',
+        vendor: 'Adarsh',
       },
       {
         id: '6',
@@ -107,6 +103,7 @@ export const EcommerceStore = signalStore(
         rating: 4.8,
         inStock: true,
         category: 'hoodies',
+        vendor: 'Adarsh',
       },
       {
         id: '7',
@@ -117,6 +114,7 @@ export const EcommerceStore = signalStore(
         rating: 4.4,
         inStock: true,
         category: 'shirts',
+        vendor: 'Adarsh',
       },
       {
         id: '8',
@@ -127,27 +125,50 @@ export const EcommerceStore = signalStore(
         rating: 4.9,
         inStock: true,
         category: 'jackets',
+        vendor: 'Adarsh',
       },
     ],
     // category
     category: 'all',
+    vendor: 'all',
     wishlistItems: [],
     cartItems: [],
     loading: false,
     error: null,
     user: undefined,
   } as EcommerceState),
-  
 
   // localStorage save
   // withStorageSync({key: 'modern-store' , select: ({ wishlistItems, cartItems , user}) => ({wishlistItems, cartItems , user})}),
 
   // computed Signals (dirived from other signals)
-  withComputed(({ category, products, wishlistItems, cartItems }) => ({
+  withComputed(({ category, products, wishlistItems, cartItems, vendor }) => ({
+    // filteredProducts: computed(() => {
+    //   if (category() === 'all') return products();
+    //   return products().filter((p) => p.category === category().toLocaleLowerCase());
+    // }),
+
     filteredProducts: computed(() => {
-      if (category() === 'all') return products();
-      return products().filter((p) => p.category === category().toLocaleLowerCase());
+      let filtered = products();
+
+      // Category filter (agar empty nahi hai)
+      if (category()) {
+        filtered = filtered.filter((p) => p.category.toLowerCase() === category().toLowerCase());
+      }
+
+      // Vendor filter (agar empty nahi hai)
+      if (vendor()) {
+        filtered = filtered.filter((p) => p.vendor.toLowerCase() === vendor().toLowerCase());
+      }
+
+      return filtered;
     }),
+
+    //product by vendor names
+    // filteredProductsVendor: computed(() => {
+    //   if (vendor() === 'all') return products();
+    //   return products().filter((p) => p.vendor === vendor().toLocaleLowerCase());
+    // }),
     wishlistCount: computed(() => wishlistItems().length),
 
     cartItemCount: computed(() => cartItems().length),
@@ -165,9 +186,18 @@ export const EcommerceStore = signalStore(
       //   )
       // )
 
-      setCategory: signalMethod<string>((category: string) => {
-        patchState(store, { category });
+      setCategory: signalMethod<string>((cat: string) => {
+        patchState(store, { category: cat });
       }),
+
+      // vendor method added
+      setVendor: signalMethod<string>((seller: string) => {
+        patchState(store, { vendor: seller });
+      }),
+
+      clearFilters() {
+        patchState(store, { category: '', vendor: '' });
+      },
       // addToWishlist: (products: Product) => {
       //   const updatedWishlistItem = produce(store.wishlistItems(), (draft) => {
       //     if (draft.find((p) => p.id === products.id)) {

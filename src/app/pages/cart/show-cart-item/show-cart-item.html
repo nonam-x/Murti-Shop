@@ -10,11 +10,11 @@
                <app-qty-selector [quantity]="item().quantity"
                  (qtyUpdated)="store.setItemQuantity({ productId: item().product.id, quantity: $event})" />
 
-    <div class="items-start  flex flex-col lg:items-end ">
+    <div class="items-start  flex flex-col lg:items-end ml-6 ">
        <div class="text-right font-semibold text-lg">
         {{total()}}
        </div>
-       <div class="flex -me-2 gap-2">
+       <div class="flex -me-2 gap-2 ">
            <button matIconButton class="" (click)="store.moveToWishlist(item().product)" > <mat-icon >favorite</mat-icon> </button>
            <button matIconButton  class="text-red-500" (click)="store.removeFromCartItems(item().product)" > <mat-icon>delete</mat-icon> </button>
        </div>   

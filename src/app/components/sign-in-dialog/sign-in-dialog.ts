@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { MatIconButton, MatButton } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogClose, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
+
 import { MatFormField, MatSuffix, MatPrefix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { EcommerceStore } from '../../ecommerce.store';
@@ -24,6 +25,8 @@ import { RouterLink } from '@angular/router';
     MatPrefix,
     MatButton,
     ReactiveFormsModule,
+
+
     
 ],
   templateUrl: './sign-in-dialog.html',
@@ -40,10 +43,15 @@ export class SignInDialog {
     data = inject<{checkout: boolean}>(MAT_DIALOG_DATA)
     dialogRef = inject(MatDialogRef)
 
-    passwordVisible = signal(false);
+    passwordVisible = false;
+
+    togglePass(){
+      this.passwordVisible = !this.passwordVisible
+    }
+
   signInForm = this.fb.group({
-    email: ['ramu@gmail.com', Validators.required],
-    password: ['ramu123', Validators.required],
+    email: ['user@gmail.com', Validators.required],
+    password: ['user123', Validators.required],
   });
 
 
