@@ -2,10 +2,6 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
-    path: '**',
-    renderMode: RenderMode.Prerender
-  },
-  {
     path: 'Productgrid/:category',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
@@ -19,5 +15,14 @@ export const serverRoutes: ServerRoute[] = [
         { category: 'jeans' }
       ];
     }
+  },
+    {
+    path: 'Product/:productId',
+    renderMode: RenderMode.Server,  // On-demand SSR
+    // Ya RenderMode.Client for full client-side
+  },
+  {
+    path: '**',
+    renderMode: RenderMode.Prerender
   }
 ];

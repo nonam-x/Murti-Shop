@@ -53,6 +53,116 @@ export const EcommerceStore = signalStore(
       {
         id: '1',
         name: 'Classic White T-Shirt',
+        description: 'Premium cotton t-shirt with a comfortable fit',
+        price: 599,
+        imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500',
+        rating: 4.5,
+        inStock: true,
+        category: 't-shirts',
+        vendor: 'kartik',
+      },
+      {
+        id: '2',
+        name: 'Denim Blue Jeans',
+        description: 'Stylish slim-fit jeans with stretch comfort',
+        price: 1499,
+        imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500',
+        rating: 4.7,
+        inStock: true,
+        category: 'jeans',
+        vendor: 'ravi singh',
+      },
+      {
+        id: '3',
+        name: 'Black Hoodie',
+        description: ' Perfect for cold weather.',
+        price: 1299,
+        imageUrl: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500',
+        rating: 4.8,
+        inStock: true,
+        category: 'hoodies',
+        vendor: 'Kumar Viswash',
+      },
+      {
+        id: '4',
+        name: 'Formal Shirt Blue',
+        description: 'Professional formal shirt with wrinkle-free',
+        price: 899,
+        imageUrl: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500',
+        rating: 4.3,
+        inStock: true,
+        category: 'shirts',
+        vendor: 'Adarsh',
+      },
+      {
+        id: '5',
+        name: 'Leather Jacket Brown',
+        description: 'Genuine leather jacket with premium finish',
+        price: 3999,
+        imageUrl: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500',
+        rating: 4.9,
+        inStock: false,
+        category: 'jackets',
+        vendor: 'kartik',
+      },
+      {
+        id: '6',
+        name: 'Graphic Print T-Shirt',
+        description: 'Trendy graphic t-shirt comfortable fit.',
+        price: 699,
+        imageUrl: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500',
+        rating: 4.4,
+        inStock: true,
+        category: 't-shirts',
+        vendor: 'ravi singh',
+      },
+      {
+        id: '7',
+        name: 'Black Skinny Jeans',
+        description: 'Modern skinny fit jeans with stretch',
+        price: 1699,
+        imageUrl: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500',
+        rating: 4.6,
+        inStock: true,
+        category: 'jeans',
+        vendor: 'Kumar Viswash',
+      },
+      {
+        id: '8',
+        name: 'Grey Zip Hoodie',
+        description: 'Premium hoodie with soft fleece lining',
+        price: 1599,
+        imageUrl: 'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=500',
+        rating: 4.7,
+        inStock: true,
+        category: 'hoodies',
+        vendor: 'Adarsh',
+      },
+      {
+        id: '9',
+        name: 'Checkered Casual Shirt',
+        description: 'Stylish checkered pattern shirt for casual outings',
+        price: 799,
+        imageUrl: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500',
+        rating: 4.2,
+        inStock: true,
+        category: 'shirts',
+        vendor: 'kartik',
+      },
+      {
+        id: '10',
+        name: 'Bomber Jacket Olive',
+        description: 'Military-inspired Lightweight and stylish.',
+        price: 2499,
+        imageUrl: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500',
+        rating: 4.8,
+        inStock: true,
+        category: 'jackets',
+        vendor: 'ravi singh',
+      },
+      {
+        id: '1',
+        name: 'Classic White T-Shirt',
         description: 'Premium cotton basic tee with a relaxed fit.',
         price: 699,
         imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab',
@@ -150,7 +260,7 @@ export const EcommerceStore = signalStore(
     //   return products().filter((p) => p.category === category().toLocaleLowerCase());
     // }),
 
-    selectedProduct: computed(()=> products().find((p)=> p.id === selectedProductId())),
+    selectedProduct: computed(() => products().find((p) => p.id === selectedProductId())),
 
     filteredProducts: computed(() => {
       let filtered = products();
@@ -190,17 +300,13 @@ export const EcommerceStore = signalStore(
       //   )
       // )
 
-      
-
       setCategory: signalMethod<string>((cat: string) => {
         patchState(store, { category: cat });
       }),
 
-      setProductId: signalMethod<string>((productId: string)=>
-      {
-patchState(store, {selectedProductId: productId})
+      setProductId: signalMethod<string>((productId: string) => {
+        patchState(store, { selectedProductId: productId });
       }),
-
 
       // vendor method added
       setVendor: signalMethod<string>((seller: string) => {
