@@ -1,99 +1,19 @@
 
-<body class="bg-gray-50">
-    <div class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <!-- Product Grid: Side-by-side on lg+, stacked on smaller -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-                
-                <!-- Image Gallery Section -->
-                <div class="space-y-4">
-                    <!-- Main Image -->
-                    <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=800&fit=crop" alt="Professional Camera" class="w-full h-96 lg:h-[500px] object-cover hover:scale-105 transition-transform duration-300">
-                        <!-- Wishlist Button Overlay -->
-                        <button class="absolute top-4 right-4 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all">
-                            <svg class="w-6 h-6 text-gray-600 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <!-- Thumbnail Gallery -->
-                    <div class="grid grid-cols-4 gap-2">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=150&h=150&fit=crop" alt="Thumb 1" class="rounded-xl cursor-pointer hover:ring-2 ring-blue-500 transition-all">
-                        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24f?w=150&h=150&fit=crop" alt="Thumb 2" class="rounded-xl cursor-pointer hover:ring-2 ring-blue-500 transition-all">
-                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=150&h=150&fit=crop" alt="Thumb 3" class="rounded-xl cursor-pointer hover:ring-2 ring-blue-500 transition-all">
-                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=150&h=150&fit=crop" alt="Thumb 4" class="rounded-xl cursor-pointer hover:ring-2 ring-blue-500 transition-all">
-                    </div>
-                </div>
+<div class=" mx-0 lg:mx-auto max-w-[1200px] py-6 px-4 hide-scrollbar">
+  <app-back-button class=" mb-2 lg:mb-6" label="Continue Shopping" [navigateTo]="backRoute()"></app-back-button>
+    @if(store.selectedProduct(); as product){
+             <div class=" flex flex-col lg:flex-row gap-8 mb-8 ">
+                <img [src]="product.imageUrl" class="w-[500px] h-[300px] lg:h-[500px] rounded-lg object-cover hover:scale-105 transition-transform duration-300"
+                [style.view-transition-name]="'product-image-' + product.id">
+               <div class="flex-1">
+                <app-product-info [product]="product"></app-product-info>
+               </div>
+             </div>
 
-                <!-- Product Details Section -->
-                <div class="lg:sticky lg:top-8 lg:max-h-screen overflow-y-auto">
-                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-tight">Sony Alpha 1 Professional Camera</h1>
-                    
-                    <!-- Rating & Reviews -->
-                    <div class="flex items-center mb-6">
-                        <div class="flex text-yellow-400 text-lg mr-2">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                        </div>
-                        <span class="text-gray-600 ml-1">(127 reviews)</span>
-                    </div>
+    }
 
-                    <!-- Price -->
-                    <div class="mb-8">
-                        <p class="text-4xl sm:text-5xl font-bold text-gray-900 mb-2">$4,499.99</p>
-                        <p class="text-lg text-green-600 font-semibold">In stock • Free shipping</p>
-                    </div>
 
-                    <!-- Description -->
-                    <div class="prose prose-sm max-w-none mb-8 text-gray-700">
-                        <p>Experience unparalleled performance with the Sony Alpha 1, featuring 50.1MP full-frame sensor, 30fps blackout-free shooting, and 8K video capture. Perfect for professional photographers and videographers demanding the ultimate in image quality and speed.</p>
-                    </div>
 
-                    <!-- Color Selector -->
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-3">Color</label>
-                        <div class="flex space-x-3">
-                            <button class="w-12 h-12 bg-gray-200 rounded-full border-4 border-white shadow-md hover:border-blue-500 transition-all" title="Black"></button>
-                            <button class="w-12 h-12 bg-gray-800 rounded-full border-4 border-gray-800 shadow-md hover:border-blue-500 transition-all ring-2 ring-transparent" title="Silver"></button>
-                        </div>
-                    </div>
 
-                    <!-- Quantity Selector -->
-                    <div class="mb-8">
-                        <label class="block text-sm font-medium text-gray-700 mb-3">Quantity</label>
-                        <div class="flex items-center border border-gray-300 rounded-lg p-1 w-28">
-                            <button class="-m-1 p-2 hover:bg-gray-100 rounded-l-lg transition-colors" onclick="updateQty(-1)">−</button>
-                            <span class="px-4 py-2 font-semibold" id="qty">1</span>
-                            <button class="-m-1 p-2 hover:bg-gray-100 rounded-r-lg transition-colors" onclick="updateQty(1)">+</button>
-                        </div>
-                    </div>
 
-                    <!-- CTA Buttons -->
-                    <div class="space-y-3 mb-8">
-                        <button class="w-full bg-black text-white py-4 px-8 rounded-xl text-lg font-semibold hover:bg-gray-900 shadow-xl transform hover:-translate-y-1 transition-all duration-200 flex items-center justify-center">
-                            Add to Cart
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 7.5A2 2 0 005.9 21h14.2a2 2 0 001.9-2.5l-1.5-7.5"></path>
-                            </svg>
-                        </button>
-                        <button class="w-full bg-blue-600 text-white py-4 px-8 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-all duration-200">Buy Now</button>
-                    </div>
-
-                    <!-- Features List -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 class="text-xl font-bold mb-4">Key Features</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li>• 50.1MP Exmor RS CMOS Sensor</li>
-                            <li>• 8K 30p & 4K 120p 10-bit 4:2:2</li>
-                            <li>• Real-time Eye AF with 759 Phase Pixels</li>
-                            <li>• 5-axis SteadyShot Stabilization</li>
-                            <li>• 240MP/s No Blackout Sequential Shooting</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
- 
-</body>
+</div>

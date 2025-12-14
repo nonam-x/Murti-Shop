@@ -1,32 +1,43 @@
-<div class=" flex items-center gap-1">
-  <button matIconButton routerLink="/whishlist"   [matBadge]="store.wishlistCount() " [matBadgeHidden]="store.wishlistCount() === 0" ><mat-icon>favorite</mat-icon></button>
-  <button matIconButton routerLink="/cart" [matBadge]="store.cartItemCount() "  [matBadgeHidden]="store.cartItemCount() === 0"  ><mat-icon>shopping_cart</mat-icon></button>
+<div class="flex items-center justify-center gap-1">
+  <button
+    matIconButton
+    routerLink="/whishlist"
+    [matBadge]="store.wishlistCount()"
+    [matBadgeHidden]="store.wishlistCount() === 0"
+    
+  >
+    <mat-icon >favorite</mat-icon>
+  </button>
+  <button
+    matIconButton
+    routerLink="/cart"
+    [matBadge]="store.cartItemCount()"
+    [matBadgeHidden]="store.cartItemCount() === 0"
+  >
+    <mat-icon   >shopping_cart</mat-icon>
+  </button>
 
   @if(store.user(); as user){
-    <button matIconButton [matMenuTriggerFor]="userMenu">
-      <img [src]="user.imageUrl" [alt]="user.name" class="w-8 h-8 rounded-full"/>
+  <button matIconButton [matMenuTriggerFor]="userMenu">
+    <img [src]="user.imageUrl" [alt]="user.name" class="w-8 h-8 rounded-full" />
+  </button>
+
+  <mat-menu #userMenu="matMenu" xPosition="before">
+    <div class="flex flex-col px-3 max-w-[200px]">
+      <span class="text-sm font-medium">{{ user.name }}</span>
+      <span class="text-sm font-medium">{{ user.email }}</span>
+    </div>
+    <mat-divider></mat-divider>
+    <button class="!min-h-[32px]" mat-menu-item (click)="store.signOut()">
+      <mat-icon>logout</mat-icon>
+      Sign Out
     </button>
-  
-    <mat-menu #userMenu="matMenu" xPosition="before">
-      <div class="flex flex-col px-3 max-w-[200px] ">
-        <span class="text-sm font-medium">{{user.name}}</span>
-        <span class="text-sm font-medium">{{user.email}}</span>
-      </div>
-      <mat-divider></mat-divider>
-      <button class="!min-h-[32px]" mat-menu-item (click)="store.signOut()"> 
-       <mat-icon >logout</mat-icon>
-       Sign Out
-      </button>
-    </mat-menu>
+  </mat-menu>
 
   } @else {
-      <button matButton (click)="openSignInDialog()">
-    Sign In
-  </button>
-  <button matButton ='filled' (click)="openSignUpDialog()">
-    Sign Up
-  </button>
-  }
- 
+<div class="flex justify-center items-center">
+    <button matButton class="   lg:text-2xl" (click)="openSignInDialog()">Sign In</button>
+  <button matButton="filled" (click)="openSignUpDialog()">Sign Up</button>
 </div>
-
+  }
+</div>

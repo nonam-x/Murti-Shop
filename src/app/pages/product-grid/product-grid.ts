@@ -21,7 +21,7 @@ import { MatButton, MatIconButton } from '@angular/material/button';
     MatNavList,
     MatListItem,
     MatListItemTitle,
-    RouterLink,
+  
     TitleCasePipe,
     ToggleWishlistButton,
     MatIcon,
@@ -178,14 +178,13 @@ export default class ProductGrid {
     this.route.paramMap.subscribe((params) => {
       const cat = params.get('category') ?? 'all';
       this.store.setCategory(cat === 'all' ? '' : cat);
-      console.log('🔵 Category set to:', cat === 'all' ? '(empty - all)' : cat);
+
     });
 
     // Vendor from URL query param
     this.route.queryParamMap.subscribe((params) => {
       const vendor = params.get('vendor') ?? '';
       this.store.setVendor(vendor);
-      console.log('🟢 Vendor set to:', vendor || '(empty - all)');
     });
   }
 
@@ -197,11 +196,14 @@ export default class ProductGrid {
     this.isOpenS = !this.isOpenS;
   }
 
+  clearFilter(){
+ this.store.setCategory('')
+ this.store.setVendor('');
+  }
+
   selectCategory(cat: string) {
     const categoryValue = cat === 'all' ? '' : cat;
-    const currentVendor = this.store.vendor();
-
-    console.log('📂 Selecting category:', cat, '→ Store:', categoryValue);
+    const currentVendor = this.store.vendor()
 
     this.store.setCategory(categoryValue);
 
@@ -213,11 +215,10 @@ export default class ProductGrid {
   }
 
   selectVendor(vendor: string) {
-    // ✅ FIX: "all" ko empty string banao
+   
     const vendorValue = vendor === 'all' ? '' : vendor;
     const currentCategory = this.store.category() || 'all';
 
-    console.log('🏪 Selecting vendor:', vendor, '→ Store:', vendorValue);
 
     this.store.setVendor(vendorValue);
 

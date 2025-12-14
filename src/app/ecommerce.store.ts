@@ -36,6 +36,7 @@ export type EcommerceState = {
   loading: boolean;
   error: string | null;
   user: User | undefined;
+  selectedProductId: string | undefined;
 };
 
 export const EcommerceStore = signalStore(
@@ -136,17 +137,20 @@ export const EcommerceStore = signalStore(
     loading: false,
     error: null,
     user: undefined,
+    selectedProductId: undefined,
   } as EcommerceState),
 
   // localStorage save
   // withStorageSync({key: 'modern-store' , select: ({ wishlistItems, cartItems , user}) => ({wishlistItems, cartItems , user})}),
 
   // computed Signals (dirived from other signals)
-  withComputed(({ category, products, wishlistItems, cartItems, vendor }) => ({
+  withComputed(({ category, products, wishlistItems, cartItems, vendor, selectedProductId }) => ({
     // filteredProducts: computed(() => {
     //   if (category() === 'all') return products();
     //   return products().filter((p) => p.category === category().toLocaleLowerCase());
     // }),
+
+    selectedProduct: computed(()=> products().find((p)=> p.id === selectedProductId())),
 
     filteredProducts: computed(() => {
       let filtered = products();
@@ -186,9 +190,17 @@ export const EcommerceStore = signalStore(
       //   )
       // )
 
+      
+
       setCategory: signalMethod<string>((cat: string) => {
         patchState(store, { category: cat });
       }),
+
+      setProductId: signalMethod<string>((productId: string)=>
+      {
+patchState(store, {selectedProductId: productId})
+      }),
+
 
       // vendor method added
       setVendor: signalMethod<string>((seller: string) => {

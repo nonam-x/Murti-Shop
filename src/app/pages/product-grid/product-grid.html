@@ -43,13 +43,13 @@
     </div>
   </mat-sidenav>
 
-  <mat-sidenav-content class="bg-grey-600 p-6 h-full w-full">
-    <div class="flex flex-col overflow-x-auto no-scrollbar hide-scrollbar">
-      <h1 class="text-xl font-bold text-gray-900 mb-1 flex items-center justify-start">
-        <!-- button to open category options -->
+  <mat-sidenav-content class="bg-grey-600 p-4 h-full w-full hide-scrollbar">
+    <div class="flex flex-col">
+      <!-- button to open category options -->
+      <div class="flex items-center justify-start overflow-x-scroll overflow-y-hidden hide-scrollbar mb-1">
         <button
           matButton="filled"
-          class="!bg-orange-50 !border !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
+          class="!bg-orange-50 !border !px-14 lg:!px-6 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
           (click)="toggleSidenav()"
         >
           <mat-icon>{{ sidenav.opened ? 'close' : 'category' }}</mat-icon>
@@ -57,17 +57,26 @@
         </button>
         <button
           matButton="filled"
-          class="!bg-orange-50 !border !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
+          class="!bg-orange-50 !border !px-12 lg:!px-6 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
           (click)="toggleSidenavseller()"
         >
           <mat-icon>{{ sidenavseller.opened ? 'close' : 'seller' }}</mat-icon>
           Sellers
         </button>
 
-        <!-- category name  -->
-      </h1>
+        <button
+          matButton="filled"
+          class="!bg-orange-50 !border !px-12 lg:!px-6 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
+          (click)="clearFilter()"
+        >
+          <mat-icon class="" >close</mat-icon>
+          Clear 
+        </button>
+      
+      </div>
 
-      <h1 class="mb-4 text-gray-600">
+      <!-- category name  -->
+      <h1 class="mb-1 lg:mb-2 text-gray-600 mt-1">
         {{ store.category() | titlecase }} {{ store.vendor() | titlecase }}
       </h1>
     </div>
@@ -79,11 +88,12 @@
     </h1>
 
     <!-- product display grid -->
-    <div class="responsive-grid">
+    <div class="responsive-grid hide-scrollbar">
       @for (product of store.filteredProducts(); track product.id) {
       <app-product [product]="product">
         <app-toggle-wishlist-button
           [product]="product"
+          [style.view-transition-name]="'wishlist-button-' + product.id"
           class="!absolute z-10 top-3 right-10 !w-4 !px-0"
         />
       </app-product>

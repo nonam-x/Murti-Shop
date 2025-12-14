@@ -1,0 +1,12 @@
+@if(inStock()){
+
+    <div class="flex items-center gap-2 border border-orange-100 bg-orange-50 text-gray-900 rounded-lg px-3 py-2 lg:py-3  w-full ">
+      <mat-icon class="small  !text-green-700">check_circle</mat-icon>
+      <span class="text-xs text-gray-800">In stock and ready to ship</span>
+    </div>
+} @else {
+       <div class="flex items-center gap-2 border  border-orange-100 bg-orange-50 text-red-900 rounded-lg px-3 py-3  w-full ">
+      <mat-icon class="small">warning</mat-icon>
+      <span class="text-xs ">Currently out of stock</span>
+    </div>
+}

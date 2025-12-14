@@ -40,15 +40,25 @@ export class SignUpDialog {
     data = inject<{checkout: boolean}>(MAT_DIALOG_DATA)
     dialogRef = inject(MatDialogRef)
 
-    passwordVisible = signal(false);
+    
+    passwordVisible = false;
+
+    togglePass(){
+      this.passwordVisible = !this.passwordVisible
+    }
+
+
+
 
     
   signUpForm = this.fb.group({
-    name: ['jone',Validators.required],
-    email: ['jone@gmail.com', Validators.required],
-    password: ['ramu123', Validators.required],
-    confirmPassword: ['ramu123', Validators.required],
+    name: ['user',Validators.required],
+    email: ['user@gmail.com', Validators.required],
+    password: ['user123', Validators.required],
+    confirmPassword: ['user123', Validators.required],
   });
+
+  
 
 
 
@@ -74,5 +84,6 @@ export class SignUpDialog {
         }
       });
    }
+   
 
 }

@@ -1,10 +1,12 @@
 <div
-  class="relative grid grid-cols-1 bg-white rounded-xl shadow-lg overflow-hidden flex-col h-fit lg:h-full"
+  class="transition-all duration-200 ease-out relative grid grid-cols-1 bg-white rounded-xl shadow-lg overflow-hidden hide-scrollbar flex-col hover:translate-y-1 hover:shadow-xl active:translate-y-1 active:shadow-xl lg:w-sm h-fit lg:h-full"
 >
   <img
     [src]="product().imageUrl"
     alt=""
     class="h-[160px] w-full lg:w-full lg:h-[300px] object-cover rounded-t-xl"
+    [routerLink]="['/Product', product().id]"
+    [style.view-transition-name]="'product-image-' + product().id"
   />
   <!-- <app-toggle-wishlist-button class="!absolute z-10 top-3 right-3" [product]="product()"></app-toggle-wishlist-button> -->
   <ng-content />
@@ -14,11 +16,14 @@
       {{ product().description }}
     </h3>
 
-    <h3 class="to-gray-900 mb-1 lg:mb-2 leading-tight">
+    <h3
+      class="to-gray-900 mb-1 lg:mb-2 leading-tight"
+      [ngClass]="product().inStock ? 'text-green-700' : 'text-red-800'"
+    >
       {{ product().inStock ? 'In Stock' : 'Out Of Stock' }}
     </h3>
-    <h3 class="to-gray-900 text-green-800 mb-1 lg:mb-2 leading-tight">
-      seller {{ product().vendor }}
+    <h3 class="to-gray-900 text-orange-950 opacity-80 mb-1 lg:mb-2 leading-tight">
+      Seller - {{ product().vendor | titlecase }}
     </h3>
     <div class="flex items-center justify-between mt-auto">
       <span class="font-bold to-gray-900 lg:text-xl">₹{{ product().price }}</span>

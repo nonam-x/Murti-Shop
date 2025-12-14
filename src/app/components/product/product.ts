@@ -3,11 +3,13 @@ import { product } from '../../models/products';
 import { MatAnchor } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { EcommerceStore } from '../../ecommerce.store';
+import { TitleCasePipe, NgClass } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 
 @Component({
   selector: 'app-product',
-  imports: [MatAnchor, MatIcon],
+  imports: [MatAnchor, MatIcon, TitleCasePipe, NgClass, RouterLink],
   templateUrl: './product.html',
   styles: ``,
 })
