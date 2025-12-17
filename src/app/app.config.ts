@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes, withComponentInputBinding(), withViewTransitions()),  provideClientHydration(withEventReplay()), 
+    provideRouter(routes, withComponentInputBinding()),  provideClientHydration(withEventReplay()), 
     provideHotToastConfig({style: {marginTop:'70px'}, stacking:'depth',duration:1000}),
     provideHttpClient(),
     {

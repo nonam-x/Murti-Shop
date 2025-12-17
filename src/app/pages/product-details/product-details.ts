@@ -20,7 +20,13 @@ export default class ProductDetails {
 
   }
 
-  backRoute = computed(()=> `/Productgrid/${this.store.category()}`);
+  // backRoute = computed(()=> 'all/'+ this.store.vendor());
+
+
+  // debug(){
+  //   console.log(this.store.category())
+ 
+  // }
 
 
 }

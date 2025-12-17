@@ -16,6 +16,7 @@ import { MatIcon } from "@angular/material/icon";
 export class BackButton {
 
  label = input('');
+ 
  navigateTo = input<string>()
 
 }

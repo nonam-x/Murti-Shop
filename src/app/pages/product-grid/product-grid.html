@@ -46,10 +46,12 @@
   <mat-sidenav-content class="bg-grey-600 p-4 h-full w-full hide-scrollbar">
     <div class="flex flex-col">
       <!-- button to open category options -->
-      <div class="flex items-center justify-start overflow-x-scroll overflow-y-hidden hide-scrollbar mb-1">
+      <div
+        class="flex items-center justify-start lg:flex-none overflow-x-scroll overflow-y-hidden hide-scrollbar mb-1"
+      >
         <button
           matButton="filled"
-          class="!bg-orange-50 !border !px-14 lg:!px-6 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
+          class="!bg-orange-50 !border !px-14 lg:!px-14 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
           (click)="toggleSidenav()"
         >
           <mat-icon>{{ sidenav.opened ? 'close' : 'category' }}</mat-icon>
@@ -57,7 +59,7 @@
         </button>
         <button
           matButton="filled"
-          class="!bg-orange-50 !border !px-12 lg:!px-6 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
+          class="!bg-orange-50 !border !px-12 lg:!px-12 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
           (click)="toggleSidenavseller()"
         >
           <mat-icon>{{ sidenavseller.opened ? 'close' : 'seller' }}</mat-icon>
@@ -66,13 +68,12 @@
 
         <button
           matButton="filled"
-          class="!bg-orange-50 !border !px-12 lg:!px-6 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
+          class="!bg-orange-50 !border !px-12 lg:!px-12 !size-9 lg:!size-10 !border-orange-100 !text-gray-900 flex items-center justify-center mr-2 lg:hidden"
           (click)="clearFilter()"
         >
-          <mat-icon class="" >close</mat-icon>
-          Clear 
+          <mat-icon class="">close</mat-icon>
+          Clear
         </button>
-      
       </div>
 
       <!-- category name  -->
@@ -93,7 +94,6 @@
       <app-product [product]="product">
         <app-toggle-wishlist-button
           [product]="product"
-          [style.view-transition-name]="'wishlist-button-' + product.id"
           class="!absolute z-10 top-3 right-10 !w-4 !px-0"
         />
       </app-product>
